@@ -17,7 +17,7 @@
 
 <?php $this->widget('application.components.system.FListView', array(
 	'dataProvider'=>$dataProvider,
-	'itemView'=>'/history_pause/_view',
+	'itemView'=>'/o/history_pause/_view',
 	'pager' => array(
 		'header' => '',
 	), 

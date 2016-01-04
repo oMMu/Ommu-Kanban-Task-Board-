@@ -11,10 +11,11 @@
 
 	$this->breadcrumbs=array(
 		'Kanban Task History Pauses'=>array('manage'),
-		'Create',
+		$model->pause_id=>array('view','id'=>$model->pause_id),
+		'Update',
 	);
 ?>
 
 <div class="form">
-	<?php echo $this->renderPartial('/history_pause/_form', array('model'=>$model)); ?>
+	<?php echo $this->renderPartial('/o/history_pause/_form', array('model'=>$model)); ?>
 </div>

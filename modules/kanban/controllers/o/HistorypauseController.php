@@ -122,7 +122,7 @@ class HistorypauseController extends Controller
 		$this->pageTitle = 'Kanban Task History Pauses';
 		$this->pageDescription = $setting->meta_description;
 		$this->pageMeta = $setting->meta_keyword;
-		$this->render('/history_pause/front_index',array(
+		$this->render('/o/history_pause/front_index',array(
 			'dataProvider'=>$dataProvider,
 		));
 		//$this->redirect(array('manage'));
@@ -148,11 +148,11 @@ class HistorypauseController extends Controller
 		$this->pageTitle = 'View Kanban Task History Pauses';
 		$this->pageDescription = '';
 		$this->pageMeta = $setting->meta_keyword;
-		$this->render('/history_pause/front_view',array(
+		$this->render('/o/history_pause/front_view',array(
 			'model'=>$model,
 		));
 		/*
-		$this->render('/history_pause/admin_view',array(
+		$this->render('/o/history_pause/admin_view',array(
 			'model'=>$model,
 		));
 		*/
@@ -182,7 +182,7 @@ class HistorypauseController extends Controller
 		$this->pageTitle = 'Kanban Task History Pauses Manage';
 		$this->pageDescription = '';
 		$this->pageMeta = '';
-		$this->render('/history_pause/admin_manage',array(
+		$this->render('/o/history_pause/admin_manage',array(
 			'model'=>$model,
 			'columns' => $columns,
 		));
@@ -248,7 +248,7 @@ class HistorypauseController extends Controller
 		$this->pageTitle = 'Create Kanban Task History Pauses';
 		$this->pageDescription = '';
 		$this->pageMeta = '';
-		$this->render('/history_pause/admin_add',array(
+		$this->render('/o/history_pause/admin_add',array(
 			'model'=>$model,
 		));
 	}
@@ -314,7 +314,7 @@ class HistorypauseController extends Controller
 		$this->pageTitle = 'Update Kanban Task History Pauses';
 		$this->pageDescription = '';
 		$this->pageMeta = '';
-		$this->render('/history_pause/admin_edit',array(
+		$this->render('/o/history_pause/admin_edit',array(
 			'model'=>$model,
 		));
 	}
@@ -385,7 +385,7 @@ class HistorypauseController extends Controller
 			$this->pageTitle = 'KanbanTaskHistoryPause Delete.';
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('/history_pause/admin_delete');
+			$this->render('/o/history_pause/admin_delete');
 		}
 	}
 
@@ -442,7 +442,7 @@ class HistorypauseController extends Controller
 			$this->pageTitle = $title;
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('/history_pause/admin_publish',array(
+			$this->render('/o/history_pause/admin_publish',array(
 				'title'=>$title,
 				'model'=>$model,
 			));
@@ -483,7 +483,7 @@ class HistorypauseController extends Controller
 			$this->pageTitle = 'Headline';
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('/history_pause/admin_headline');
+			$this->render('/o/history_pause/admin_headline');
 		}
 	}
 
