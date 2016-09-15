@@ -3,7 +3,7 @@
  * Kanban Task Comments (kanban-task-comment)
  * @var $this CommentController * @var $model KanbanTaskComment * @var $form CActiveForm
  *
- * @author Putra Sudaryanto <putra.sudaryanto@gmail.com>
+ * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
  * @link http://company.ommu.co
  * @contect (+62)856-299-4114
@@ -47,7 +47,7 @@
 		</li>
 
 		<li class="submit">
-			<?php echo CHtml::submitButton(Phrase::trans(3,0)); ?>
+			<?php echo CHtml::submitButton(Yii::t('phrase', 'Search')); ?>
 		</li>
 	</ul>
 	<div class="clear"></div>

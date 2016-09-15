@@ -3,7 +3,7 @@
  * Kanban Task Categories (kanban-task-category)
  * @var $this CategoryController * @var $model KanbanTaskCategory * @var $form CActiveForm
  *
- * @author Putra Sudaryanto <putra.sudaryanto@gmail.com>
+ * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
  * @link http://company.ommu.co
  * @contect (+62)856-299-4114
@@ -23,11 +23,11 @@
 )); ?>
 
 	<div class="dialog-content">
-		<?php echo $model->publish == 1 ? Phrase::trans(282,0) : Phrase::trans(281,0)?>
+		<?php echo $model->publish == 1 ? Yii::t('phrase', 'Are you sure you want to unpublish this item?') : Yii::t('phrase', 'Are you sure you want to publish this item?')?>
 	</div>
 	<div class="dialog-submit">
 		<?php echo CHtml::submitButton($title, array('onclick' => 'setEnableSave()')); ?>
-		<?php echo CHtml::button(Phrase::trans(174,0), array('id'=>'closed')); ?>
+		<?php echo CHtml::button(Yii::t('phrase', 'Cancel'), array('id'=>'closed')); ?>
 	</div>
 	
 <?php $this->endWidget(); ?>

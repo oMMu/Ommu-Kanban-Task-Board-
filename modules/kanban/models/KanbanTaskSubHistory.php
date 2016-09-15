@@ -1,6 +1,6 @@
 <?php
 /**
- * KanbanTaskSubHistory * @author Putra Sudaryanto <putra.sudaryanto@gmail.com>
+ * KanbanTaskSubHistory * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
  * @link http://company.ommu.co
  * @contact (+62)856-299-4114
@@ -202,8 +202,8 @@ class KanbanTaskSubHistory extends CActiveRecord
 					'class' => 'center',
 				),
 				'filter'=>array(
-					1=>Phrase::trans(588,0),
-					0=>Phrase::trans(589,0),
+					1=>Yii::t('phrase', 'Yes'),
+					0=>Yii::t('phrase', 'No'),
 				),
 				'type' => 'raw',
 			);

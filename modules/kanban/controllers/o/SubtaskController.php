@@ -20,7 +20,7 @@
  *	LoadModel
  *	performAjaxValidation
  *
- * @author Putra Sudaryanto <putra.sudaryanto@gmail.com>
+ * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
  * @link http://company.ommu.co
  * @contect (+62)856-299-4114
@@ -336,10 +336,10 @@ class SubtaskController extends Controller
 	{
 		$model=$this->loadModel($id);
 		if($model->done_status == 1) {
-			$title = Phrase::trans(292,0);
+			$title = Yii::t('phrase', 'Unresolved');
 			$replace = 0;
 		} else {
-			$title = Phrase::trans(291,0);
+			$title = Yii::t('phrase', 'Resolved');
 			$replace = 1;
 		}
 
@@ -383,7 +383,7 @@ class SubtaskController extends Controller
 	{
 		$model = KanbanTaskSub::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404, Phrase::trans(193,0));
+			throw new CHttpException(404, Yii::t('phrase', 'The requested page does not exist.'));
 		return $model;
 	}
 

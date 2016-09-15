@@ -1,6 +1,6 @@
 <?php
 /**
- * KanbanUserDivision * @author Putra Sudaryanto <putra.sudaryanto@gmail.com>
+ * KanbanUserDivision * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
  * @link http://company.ommu.co
  * @contact (+62)856-299-4114
@@ -240,8 +240,8 @@ class KanbanUserDivision extends CActiveRecord
 					'class' => 'center',
 				),
 				'filter'=>array(
-					1=>Phrase::trans(588,0),
-					0=>Phrase::trans(589,0),
+					1=>Yii::t('phrase', 'Yes'),
+					0=>Yii::t('phrase', 'No'),
 				),
 				'type' => 'raw',
 			);
@@ -252,8 +252,8 @@ class KanbanUserDivision extends CActiveRecord
 					'class' => 'center',
 				),
 				'filter'=>array(
-					1=>Phrase::trans(588,0),
-					0=>Phrase::trans(589,0),
+					1=>Yii::t('phrase', 'Yes'),
+					0=>Yii::t('phrase', 'No'),
 				),
 				'type' => 'raw',
 			);
@@ -264,8 +264,8 @@ class KanbanUserDivision extends CActiveRecord
 					'class' => 'center',
 				),
 				'filter'=>array(
-					1=>Phrase::trans(588,0),
-					0=>Phrase::trans(589,0),
+					1=>Yii::t('phrase', 'Yes'),
+					0=>Yii::t('phrase', 'No'),
 				),
 				'type' => 'raw',
 			);
@@ -303,8 +303,8 @@ class KanbanUserDivision extends CActiveRecord
 						'class' => 'center',
 					),
 					'filter'=>array(
-						1=>Phrase::trans(588,0),
-						0=>Phrase::trans(589,0),
+						1=>Yii::t('phrase', 'Yes'),
+						0=>Yii::t('phrase', 'No'),
 					),
 					'type' => 'raw',
 				);
@@ -349,32 +349,28 @@ class KanbanUserDivision extends CActiveRecord
 	 */
 	protected function beforeSave() {
 		if(parent::beforeSave()) {
-			$action = strtolower(Yii::app()->controller->action->id);
 			if($this->isNewRecord) {
-				$currentAction = strtolower(Yii::app()->controller->module->id.'/'.Yii::app()->controller->id);
+				$location = strtolower(Yii::app()->controller->module->id.'/'.Yii::app()->controller->id);
 				$title=new OmmuSystemPhrase;
-				$title->location = $currentAction;
-				$title->en = $this->title;
-				if($title->save()) {
+				$title->location = $location.'_title';
+				$title->en_us = $this->title;
+				if($title->save())
 					$this->name = $title->phrase_id;
-				}
 
 				$desc=new OmmuSystemPhrase;
-				$desc->location = $currentAction;
-				$desc->en = $this->description;
-				if($desc->save()) {
+				$desc->location = $location.'_description';
+				$desc->en_us = $this->description;
+				if($desc->save())
 					$this->desc = $desc->phrase_id;
-				}
+				
 			} else {
-				if($action == 'edit') {
-					$title = OmmuSystemPhrase::model()->findByPk($this->name);
-					$title->en = $this->title;
-					$title->update();
+				$title = OmmuSystemPhrase::model()->findByPk($this->name);
+				$title->en_us = $this->title;
+				$title->update();
 
-					$desc = OmmuSystemPhrase::model()->findByPk($this->desc);
-					$desc->en = $this->description;
-					$desc->update();
-				}
+				$desc = OmmuSystemPhrase::model()->findByPk($this->desc);
+				$desc->en_us = $this->description;
+				$desc->update();
 			}
 		}
 		return true;
