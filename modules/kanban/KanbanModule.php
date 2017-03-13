@@ -3,6 +3,11 @@
 class KanbanModule extends CWebModule
 {
 	public $defaultController = 'site';
+	
+	// getAssetsUrl()
+	//	return the URL for this module's assets, performing the publish operation
+	//	the first time, and caching the result for subsequent use.
+	private $_assetsUrl;
 
 	public function init() 
 	{
@@ -13,8 +18,17 @@ class KanbanModule extends CWebModule
 		$this->setImport(array(
 			'kanban.models.*',
 			'kanban.components.*',
+			
 			'project.models.Projects',
 		));
+	}
+ 
+	public function getAssetsUrl()
+	{
+		if ($this->_assetsUrl === null)
+			$this->_assetsUrl = Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('kanban.assets'));
+		
+		return $this->_assetsUrl;
 	}
 
 	public function beforeControllerAction($controller, $action)
