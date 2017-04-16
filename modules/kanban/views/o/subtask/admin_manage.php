@@ -1,10 +1,13 @@
 <?php
 /**
  * Kanban Task Subs (kanban-task-sub)
- * @var $this SubtaskController * @var $model KanbanTaskSub *
+ * @var $this SubtaskController 
+ * @var $model KanbanTaskSub
+ * version: 0.0.1
+ *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
- * @copyright Copyright (c) 2014 Ommu Platform (ommu.co)
- * @link http://company.ommu.co
+ * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @link https://github.com/ommu/Kanban-Task
  * @contect (+62)856-299-4114
  *
  */
