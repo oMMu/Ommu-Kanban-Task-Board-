@@ -108,7 +108,7 @@
 				<?php 
 				!$model->isNewRecord ? ($model->due_date != '0000-00-00' ? $model->due_date = date('d-m-Y', strtotime($model->due_date)) : '') : '';
 				//echo $form->textField($model,'due_date');
-				$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				$this->widget('application.components.system.CJuiDatePicker',array(
 					'model'=>$model, 
 					'attribute'=>'due_date',
 					//'mode'=>'datetime',
@@ -130,7 +130,7 @@
 				<?php 
 				!$model->isNewRecord ? ($model->reschedule_date != '0000-00-00' ? $model->reschedule_date = date('d-m-Y', strtotime($model->reschedule_date)) : '') : '';
 				//echo $form->textField($model,'reschedule_date');
-				$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				$this->widget('application.components.system.CJuiDatePicker',array(
 					'model'=>$model, 
 					'attribute'=>'reschedule_date',
 					//'mode'=>'datetime',
@@ -156,7 +156,7 @@
 				<?php 
 				!$model->isNewRecord ? ($model->overtime_date != '0000-00-00' ? $model->overtime_date = date('d-m-Y', strtotime($model->overtime_date)) : '') : '';
 				//echo $form->textField($model,'overtime_date');
-				$this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				$this->widget('application.components.system.CJuiDatePicker',array(
 					'model'=>$model, 
 					'attribute'=>'overtime_date',
 					//'mode'=>'datetime',
