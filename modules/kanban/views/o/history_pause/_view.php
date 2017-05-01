@@ -8,7 +8,7 @@
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
  * @link https://github.com/ommu/Kanban-Task
- * @contect (+62)856-299-4114
+ * @contact (+62)856-299-4114
  *
  */
 ?>
