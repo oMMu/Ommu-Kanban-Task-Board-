@@ -14,7 +14,7 @@
  */
 ?>
 
-<?php $form=$this->beginWidget('application.components.system.OActiveForm', array(
+<?php $form=$this->beginWidget('application.libraries.core.components.system.OActiveForm', array(
 	'id'=>'kanban-task-history-pause-form',
 	'enableAjaxValidation'=>true,
 	//'htmlOptions' => array('enctype' => 'multipart/form-data')
@@ -43,7 +43,7 @@
 			<?php
 			!$model->isNewRecord ? ($model->pause_date != '0000-00-00' ? $model->pause_date = date('d-m-Y', strtotime($model->pause_date)) : '') : '';
 			//echo $form->textField($model,'pause_date');
-			$this->widget('application.components.system.CJuiDatePicker',array(
+			$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
 				'model'=>$model,
 				'attribute'=>'pause_date',
 				//'mode'=>'datetime',
@@ -74,7 +74,7 @@
 			<?php
 			!$model->isNewRecord ? ($model->unpause_date != '0000-00-00' ? $model->unpause_date = date('d-m-Y', strtotime($model->unpause_date)) : '') : '';
 			//echo $form->textField($model,'unpause_date');
-			$this->widget('application.components.system.CJuiDatePicker',array(
+			$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
 				'model'=>$model,
 				'attribute'=>'unpause_date',
 				//'mode'=>'datetime',

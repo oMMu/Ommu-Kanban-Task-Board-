@@ -94,7 +94,7 @@
 				'template' => '{update}|{delete}',
 			));
 
-			$this->widget('application.components.system.OGridView', array(
+			$this->widget('application.libraries.core.components.system.OGridView', array(
 				'id'=>'kanban-user-division-grid',
 				'dataProvider'=>$model->search(),
 				'filter'=>$model,
