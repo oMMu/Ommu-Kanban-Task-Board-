@@ -7,7 +7,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  */
@@ -32,7 +32,7 @@
 		<div class="clearfix">
 			<?php echo $form->labelEx($model,'project_id'); ?>
 			<div class="desc">
-				<?php echo $form->textField($model,'project_id',array('maxlength'=>11)); ?>
+				<?php echo $form->textField($model,'project_id', array('maxlength'=>11)); ?>
 				<?php echo $form->error($model,'project_id'); ?>
 				<?php /*<div class="small-px silent"></div>*/?>
 			</div>
@@ -41,7 +41,7 @@
 		<div class="clearfix">
 			<?php echo $form->labelEx($model,'user_id'); ?>
 			<div class="desc">
-				<?php echo $form->textField($model,'user_id',array('maxlength'=>11)); ?>
+				<?php echo $form->textField($model,'user_id', array('maxlength'=>11)); ?>
 				<?php echo $form->error($model,'user_id'); ?>
 				<?php /*<div class="small-px silent"></div>*/?>
 			</div>
@@ -68,7 +68,7 @@
 		<div class="clearfix">
 			<?php echo $form->labelEx($model,'task_name'); ?>
 			<div class="desc">
-				<?php echo $form->textField($model,'task_name',array('maxlength'=>64, 'class'=>'span-10')); ?>
+				<?php echo $form->textField($model,'task_name', array('maxlength'=>64, 'class'=>'span-10')); ?>
 				<?php echo $form->error($model,'task_name'); ?>
 				<?php /*<div class="small-px silent"></div>*/?>
 			</div>
@@ -77,7 +77,7 @@
 		<div class="clearfix">
 			<?php echo $form->labelEx($model,'task_desc'); ?>
 			<div class="desc">
-				<?php echo $form->textArea($model,'task_desc',array('rows'=>6, 'cols'=>50, 'class'=>'span-10 smaller')); ?>
+				<?php echo $form->textArea($model,'task_desc', array('rows'=>6, 'cols'=>50, 'class'=>'span-10 smaller')); ?>
 				<?php echo $form->error($model,'task_desc'); ?>
 				<?php /*<div class="small-px silent"></div>*/?>
 			</div>
@@ -86,7 +86,7 @@
 		<div class="clearfix">
 			<?php echo $form->labelEx($model,'current_action'); ?>
 			<div class="desc">
-				<?php echo $form->textField($model,'current_action',array('maxlength'=>64, 'class'=>'span-8')); ?>
+				<?php echo $form->textField($model,'current_action', array('maxlength'=>64, 'class'=>'span-8')); ?>
 				<?php echo $form->error($model,'current_action'); ?>
 				<?php /*<div class="small-px silent"></div>*/?>
 			</div>
@@ -107,12 +107,12 @@
 				<?php 
 				!$model->isNewRecord ? ($model->due_date != '0000-00-00' ? $model->due_date = date('d-m-Y', strtotime($model->due_date)) : '') : '';
 				//echo $form->textField($model,'due_date');
-				$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
+				$this->widget('application.libraries.core.components.system.CJuiDatePicker', array(
 					'model'=>$model, 
 					'attribute'=>'due_date',
 					//'mode'=>'datetime',
 					'options'=>array(
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 					),
 					'htmlOptions'=>array(
 						'class' => 'span-4',
@@ -129,12 +129,12 @@
 				<?php 
 				!$model->isNewRecord ? ($model->reschedule_date != '0000-00-00' ? $model->reschedule_date = date('d-m-Y', strtotime($model->reschedule_date)) : '') : '';
 				//echo $form->textField($model,'reschedule_date');
-				$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
+				$this->widget('application.libraries.core.components.system.CJuiDatePicker', array(
 					'model'=>$model, 
 					'attribute'=>'reschedule_date',
 					//'mode'=>'datetime',
 					'options'=>array(
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 					),
 					'htmlOptions'=>array(
 						'class' => 'span-4',
@@ -155,12 +155,12 @@
 				<?php 
 				!$model->isNewRecord ? ($model->overtime_date != '0000-00-00' ? $model->overtime_date = date('d-m-Y', strtotime($model->overtime_date)) : '') : '';
 				//echo $form->textField($model,'overtime_date');
-				$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
+				$this->widget('application.libraries.core.components.system.CJuiDatePicker', array(
 					'model'=>$model, 
 					'attribute'=>'overtime_date',
 					//'mode'=>'datetime',
 					'options'=>array(
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 					),
 					'htmlOptions'=>array(
 						'class' => 'span-4',
@@ -199,7 +199,7 @@
 	</fieldset>
 </div>
 <div class="dialog-submit">
-	<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('phrase', 'Create') : Yii::t('phrase', 'Save') ,array('onclick' => 'setEnableSave()')); ?>
+	<?php echo CHtml::submitButton($model->isNewRecord ? Yii::t('phrase', 'Create') : Yii::t('phrase', 'Save') , array('onclick' => 'setEnableSave()')); ?>
 	<?php echo CHtml::button(Yii::t('phrase', 'Close'), array('id'=>'closed')); ?>
 </div>
 <?php $this->endWidget(); ?>

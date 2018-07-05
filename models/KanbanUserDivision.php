@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -129,25 +129,25 @@ class KanbanUserDivision extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.division_id',$this->division_id);
-		if(isset($_GET['type']) && $_GET['type'] == 'publish') {
-			$criteria->compare('t.publish',1);
-		} elseif(isset($_GET['type']) && $_GET['type'] == 'unpublish') {
-			$criteria->compare('t.publish',0);
-		} elseif(isset($_GET['type']) && $_GET['type'] == 'trash') {
-			$criteria->compare('t.publish',2);
+		$criteria->compare('t.division_id', $this->division_id);
+		if(Yii::app()->getRequest()->getParam('type') == 'publish') {
+			$criteria->compare('t.publish', 1);
+		} elseif(Yii::app()->getRequest()->getParam('type') == 'unpublish') {
+			$criteria->compare('t.publish', 0);
+		} elseif(Yii::app()->getRequest()->getParam('type') == 'trash') {
+			$criteria->compare('t.publish', 2);
 		} else {
-			$criteria->addInCondition('t.publish',array(0,1));
-			$criteria->compare('t.publish',$this->publish);
+			$criteria->addInCondition('t.publish', array(0,1));
+			$criteria->compare('t.publish', $this->publish);
 		}
-		$criteria->compare('t.parent',$this->parent);
-		$criteria->compare('t.name',$this->name);
-		$criteria->compare('t.desc',$this->desc);
-		$criteria->compare('t.management',$this->management);
-		$criteria->compare('t.tested',$this->tested);
-		$criteria->compare('t.verified',$this->verified);
-		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.creation_date)',date('Y-m-d', strtotime($this->creation_date)));
+		$criteria->compare('t.parent', $this->parent);
+		$criteria->compare('t.name', $this->name);
+		$criteria->compare('t.desc', $this->desc);
+		$criteria->compare('t.management', $this->management);
+		$criteria->compare('t.tested', $this->tested);
+		$criteria->compare('t.verified', $this->verified);
+		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.creation_date)', date('Y-m-d', strtotime($this->creation_date)));
 		
 		// Custom Search
 		$criteria->with = array(
@@ -160,10 +160,10 @@ class KanbanUserDivision extends CActiveRecord
 				'select'=>'en'
 			),
 		);
-		$criteria->compare('title.en',strtolower($this->title), true);
-		$criteria->compare('description.en',strtolower($this->description), true);
+		$criteria->compare('title.en', strtolower($this->title), true);
+		$criteria->compare('description.en', strtolower($this->description), true);
 
-		if(!isset($_GET['KanbanUserDivision_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanUserDivision_sort'))
 			$criteria->order = 'division_id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -288,7 +288,7 @@ class KanbanUserDivision extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -297,10 +297,10 @@ class KanbanUserDivision extends CActiveRecord
 					),
 				), true),
 			);
-			if(!isset($_GET['type'])) {
+			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'publish',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish",array("id"=>$data->division_id)), $data->publish, 1)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish", array("id"=>$data->division_id)), $data->publish, 1)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

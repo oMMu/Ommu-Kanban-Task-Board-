@@ -7,7 +7,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  */
@@ -20,7 +20,7 @@
 	<ul>
 		<li>
 			<?php echo $model->getAttributeLabel('task_id'); ?><br/>
-			<?php echo $form->textField($model,'task_id',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'task_id', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -30,7 +30,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('project_id'); ?><br/>
-			<?php echo $form->textField($model,'project_id',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'project_id', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -45,7 +45,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('user_id'); ?><br/>
-			<?php echo $form->textField($model,'user_id',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'user_id', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -55,17 +55,17 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('current_action'); ?><br/>
-			<?php echo $form->textField($model,'current_action',array('size'=>60,'maxlength'=>64)); ?>
+			<?php echo $form->textField($model,'current_action', array('size'=>60,'maxlength'=>64)); ?>
 		</li>
 
 		<li>
 			<?php echo $model->getAttributeLabel('task_name'); ?><br/>
-			<?php echo $form->textField($model,'task_name',array('size'=>60,'maxlength'=>64)); ?>
+			<?php echo $form->textField($model,'task_name', array('size'=>60,'maxlength'=>64)); ?>
 		</li>
 
 		<li>
 			<?php echo $model->getAttributeLabel('task_desc'); ?><br/>
-			<?php echo $form->textArea($model,'task_desc',array('rows'=>6, 'cols'=>50)); ?>
+			<?php echo $form->textArea($model,'task_desc', array('rows'=>6, 'cols'=>50)); ?>
 		</li>
 
 		<li>
@@ -105,7 +105,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('progress_by'); ?><br/>
-			<?php echo $form->textField($model,'progress_by',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'progress_by', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -115,7 +115,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('done_by'); ?><br/>
-			<?php echo $form->textField($model,'done_by',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'done_by', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -125,7 +125,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('tested_by'); ?><br/>
-			<?php echo $form->textField($model,'tested_by',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'tested_by', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -160,7 +160,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('creation_by'); ?><br/>
-			<?php echo $form->textField($model,'creation_by',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'creation_by', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li>
@@ -170,7 +170,7 @@
 
 		<li>
 			<?php echo $model->getAttributeLabel('updated_by'); ?><br/>
-			<?php echo $form->textField($model,'updated_by',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'updated_by', array('size'=>11,'maxlength'=>11)); ?>
 		</li>
 
 		<li class="submit">

@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -203,76 +203,76 @@ class KanbanTasks extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.task_id',$this->task_id);
-		if(isset($_GET['type']) && $_GET['type'] == 'publish') {
-			$criteria->compare('t.publish',1);
-		} elseif(isset($_GET['type']) && $_GET['type'] == 'unpublish') {
-			$criteria->compare('t.publish',0);
-		} elseif(isset($_GET['type']) && $_GET['type'] == 'trash') {
-			$criteria->compare('t.publish',2);
+		$criteria->compare('t.task_id', $this->task_id);
+		if(Yii::app()->getRequest()->getParam('type') == 'publish') {
+			$criteria->compare('t.publish', 1);
+		} elseif(Yii::app()->getRequest()->getParam('type') == 'unpublish') {
+			$criteria->compare('t.publish', 0);
+		} elseif(Yii::app()->getRequest()->getParam('type') == 'trash') {
+			$criteria->compare('t.publish', 2);
 		} else {
-			$criteria->addInCondition('t.publish',array(0,1));
-			$criteria->compare('t.publish',$this->publish);
+			$criteria->addInCondition('t.publish', array(0,1));
+			$criteria->compare('t.publish', $this->publish);
 		}
-		if(isset($_GET['project'])) {
-			$criteria->compare('t.project_id',$_GET['project']);
+		if(Yii::app()->getRequest()->getParam('project')) {
+			$criteria->compare('t.project_id', Yii::app()->getRequest()->getParam('project'));
 		} else {
-			$criteria->compare('t.project_id',$this->project_id);
+			$criteria->compare('t.project_id', $this->project_id);
 		}
-		if(isset($_GET['cat'])) {
-			$criteria->compare('t.cat_id',$_GET['cat']);
+		if(Yii::app()->getRequest()->getParam('category')) {
+			$criteria->compare('t.cat_id', Yii::app()->getRequest()->getParam('category'));
 		} else {
-			$criteria->compare('t.cat_id',$this->cat_id);
+			$criteria->compare('t.cat_id', $this->cat_id);
 		}
-		if(isset($_GET['division'])) {
-			$criteria->compare('t.division_id',$_GET['division']);
+		if(Yii::app()->getRequest()->getParam('division')) {
+			$criteria->compare('t.division_id', Yii::app()->getRequest()->getParam('division'));
 		} else {
-			$criteria->compare('t.division_id',$this->division_id);
+			$criteria->compare('t.division_id', $this->division_id);
 		}
-		if(isset($_GET['user'])) {
-			$criteria->compare('t.user_id',$_GET['user']);
+		if(Yii::app()->getRequest()->getParam('user')) {
+			$criteria->compare('t.user_id', Yii::app()->getRequest()->getParam('user'));
 		} else {
-			$criteria->compare('t.user_id',$this->user_id);
+			$criteria->compare('t.user_id', $this->user_id);
 		}
-		$criteria->compare('t.number',$this->number);
-		$criteria->compare('t.current_action',$this->current_action,true);
-		$criteria->compare('t.task_name',$this->task_name,true);
-		$criteria->compare('t.task_desc',$this->task_desc,true);
-		$criteria->compare('t.priority',$this->priority);
-		if($this->due_date != null && !in_array($this->due_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.due_date)',date('Y-m-d', strtotime($this->due_date)));
-		if($this->reschedule_date != null && !in_array($this->reschedule_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.reschedule_date)',date('Y-m-d', strtotime($this->reschedule_date)));
-		$criteria->compare('t.overtime',$this->overtime);
-		if($this->overtime_date != null && !in_array($this->overtime_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.overtime_date)',date('Y-m-d', strtotime($this->overtime_date)));
-        $criteria->compare('t.pause',$this->pause);
-        if($this->pause_date != null && !in_array($this->pause_date, array('0000-00-00 00:00:00', '0000-00-00')))
-            $criteria->compare('date(t.pause_date)',date('Y-m-d', strtotime($this->pause_date)));
-        $criteria->compare('t.pause_condition',$this->pause_condition,true);
-        if($this->unpause_date != null && !in_array($this->unpause_date, array('0000-00-00 00:00:00', '0000-00-00')))
-            $criteria->compare('date(t.unpause_date)',date('Y-m-d', strtotime($this->unpause_date)));
-		$criteria->compare('t.task_status',$this->task_status);
-		if($this->progress_date != null && !in_array($this->progress_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.progress_date)',date('Y-m-d', strtotime($this->progress_date)));
-		$criteria->compare('t.progress_by',$this->progress_by,true);
-		if($this->done_date != null && !in_array($this->done_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.done_date)',date('Y-m-d', strtotime($this->done_date)));
-		$criteria->compare('t.done_by',$this->done_by,true);
-		if($this->tested_date != null && !in_array($this->tested_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.tested_date)',date('Y-m-d', strtotime($this->tested_date)));
-		$criteria->compare('t.tested_by',$this->tested_by,true);
-		$criteria->compare('t.tested_status',$this->tested_status);
-		$criteria->compare('t.tested_verified',$this->tested_verified);
-		$criteria->compare('t.subtask',$this->subtask);
-		$criteria->compare('t.subtask_done',$this->subtask_done);
-		$criteria->compare('t.comment',$this->comment);
-		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.creation_date)',date('Y-m-d', strtotime($this->creation_date)));
-		$criteria->compare('t.creation_by',$this->creation_by,true);
-		if($this->updated_date != null && !in_array($this->updated_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.updated_date)',date('Y-m-d', strtotime($this->updated_date)));
-		$criteria->compare('t.updated_by',$this->updated_by,true);
+		$criteria->compare('t.number', $this->number);
+		$criteria->compare('t.current_action', $this->current_action,true);
+		$criteria->compare('t.task_name', $this->task_name,true);
+		$criteria->compare('t.task_desc', $this->task_desc,true);
+		$criteria->compare('t.priority', $this->priority);
+		if($this->due_date != null && !in_array($this->due_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.due_date)', date('Y-m-d', strtotime($this->due_date)));
+		if($this->reschedule_date != null && !in_array($this->reschedule_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.reschedule_date)', date('Y-m-d', strtotime($this->reschedule_date)));
+		$criteria->compare('t.overtime', $this->overtime);
+		if($this->overtime_date != null && !in_array($this->overtime_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.overtime_date)', date('Y-m-d', strtotime($this->overtime_date)));
+        $criteria->compare('t.pause', $this->pause);
+        if($this->pause_date != null && !in_array($this->pause_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+            $criteria->compare('date(t.pause_date)', date('Y-m-d', strtotime($this->pause_date)));
+        $criteria->compare('t.pause_condition', $this->pause_condition,true);
+        if($this->unpause_date != null && !in_array($this->unpause_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+            $criteria->compare('date(t.unpause_date)', date('Y-m-d', strtotime($this->unpause_date)));
+		$criteria->compare('t.task_status', $this->task_status);
+		if($this->progress_date != null && !in_array($this->progress_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.progress_date)', date('Y-m-d', strtotime($this->progress_date)));
+		$criteria->compare('t.progress_by', $this->progress_by,true);
+		if($this->done_date != null && !in_array($this->done_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.done_date)', date('Y-m-d', strtotime($this->done_date)));
+		$criteria->compare('t.done_by', $this->done_by,true);
+		if($this->tested_date != null && !in_array($this->tested_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.tested_date)', date('Y-m-d', strtotime($this->tested_date)));
+		$criteria->compare('t.tested_by', $this->tested_by,true);
+		$criteria->compare('t.tested_status', $this->tested_status);
+		$criteria->compare('t.tested_verified', $this->tested_verified);
+		$criteria->compare('t.subtask', $this->subtask);
+		$criteria->compare('t.subtask_done', $this->subtask_done);
+		$criteria->compare('t.comment', $this->comment);
+		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.creation_date)', date('Y-m-d', strtotime($this->creation_date)));
+		$criteria->compare('t.creation_by', $this->creation_by,true);
+		if($this->updated_date != null && !in_array($this->updated_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.updated_date)', date('Y-m-d', strtotime($this->updated_date)));
+		$criteria->compare('t.updated_by', $this->updated_by,true);
 		
 		// Custom Search
 		$criteria->with = array(
@@ -305,15 +305,15 @@ class KanbanTasks extends CActiveRecord
 				'select'=>'displayname'
 			),
 		);
-		$criteria->compare('project.title',strtolower($this->project_search), true);		
-		$criteria->compare('user.displayname',strtolower($this->user_search), true);
-		$criteria->compare('progressby.displayname',strtolower($this->progress_search), true);
-		$criteria->compare('doneby.displayname',strtolower($this->done_search), true);
-		$criteria->compare('testedby.displayname',strtolower($this->tested_search), true);
-		$criteria->compare('creationby.displayname',strtolower($this->creation_search), true);
-		$criteria->compare('updatedby.displayname',strtolower($this->updated_search), true);
+		$criteria->compare('project.title', strtolower($this->project_search), true);		
+		$criteria->compare('user.displayname', strtolower($this->user_search), true);
+		$criteria->compare('progressby.displayname', strtolower($this->progress_search), true);
+		$criteria->compare('doneby.displayname', strtolower($this->done_search), true);
+		$criteria->compare('testedby.displayname', strtolower($this->tested_search), true);
+		$criteria->compare('creationby.displayname', strtolower($this->creation_search), true);
+		$criteria->compare('updatedby.displayname', strtolower($this->updated_search), true);
 
-		if(!isset($_GET['KanbanTasks_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTasks_sort'))
 			$criteria->order = 'task_id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -443,7 +443,7 @@ class KanbanTasks extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -457,10 +457,10 @@ class KanbanTasks extends CActiveRecord
 				'value' => '$data->updatedby->displayname',
 			);
 
-            if(!isset($_GET['type'])) {
+            if(!Yii::app()->getRequest()->getParam('type')) {
                 $this->defaultColumns[] = array(
                     'name' => 'pause',
-                    'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("pause",array("id"=>$data->task_id)), $data->pause, 1)',
+                    'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("pause", array("id"=>$data->task_id)), $data->pause, 1)',
                     'htmlOptions' => array(
                         'class' => 'center',
                     ),
@@ -488,7 +488,7 @@ class KanbanTasks extends CActiveRecord
                     ),
                     'options'=>array(
                         'showOn' => 'focus',
-                        'dateFormat' => 'dd-mm-yy',
+                        'dateFormat' => 'yy-mm-dd',
                         'showOtherMonths' => true,
                         'selectOtherMonths' => true,
                         'changeMonth' => true,
@@ -515,7 +515,7 @@ class KanbanTasks extends CActiveRecord
                     ),
                     'options'=>array(
                         'showOn' => 'focus',
-                        'dateFormat' => 'dd-mm-yy',
+                        'dateFormat' => 'yy-mm-dd',
                         'showOtherMonths' => true,
                         'selectOtherMonths' => true,
                         'changeMonth' => true,
@@ -542,7 +542,7 @@ class KanbanTasks extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -551,10 +551,10 @@ class KanbanTasks extends CActiveRecord
 					),
 				), true),
 			);
-			if(!isset($_GET['type'])) {
+			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'publish',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish",array("id"=>$data->task_id)), $data->publish, 1)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish", array("id"=>$data->task_id)), $data->publish, 1)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

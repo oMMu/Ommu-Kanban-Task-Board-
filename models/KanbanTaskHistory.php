@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -122,17 +122,17 @@ class KanbanTaskHistory extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.id',$this->id);
-		if(isset($_GET['task'])) {
-			$criteria->compare('t.task_id',$_GET['user']);
+		$criteria->compare('t.id', $this->id);
+		if(Yii::app()->getRequest()->getParam('task')) {
+			$criteria->compare('t.task_id', Yii::app()->getRequest()->getParam('user'));
 		} else {
-			$criteria->compare('t.task_id',$this->task_id);
+			$criteria->compare('t.task_id', $this->task_id);
 		}
-		$criteria->compare('t.move_from',$this->move_from);
-		$criteria->compare('t.move_to',$this->move_to);
-		if($this->updated_date != null && !in_array($this->updated_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.updated_date)',date('Y-m-d', strtotime($this->updated_date)));
-		$criteria->compare('t.updated_by',$this->updated_by,true);
+		$criteria->compare('t.move_from', $this->move_from);
+		$criteria->compare('t.move_to', $this->move_to);
+		if($this->updated_date != null && !in_array($this->updated_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.updated_date)', date('Y-m-d', strtotime($this->updated_date)));
+		$criteria->compare('t.updated_by', $this->updated_by,true);
 		
 		// Custom Search
 		$criteria->with = array(
@@ -145,10 +145,10 @@ class KanbanTaskHistory extends CActiveRecord
 				'select'=>'displayname'
 			),
 		);
-		$criteria->compare('task.task_name',strtolower($this->task_search), true);
-		$criteria->compare('updatedby.displayname',strtolower($this->updated_search), true);
+		$criteria->compare('task.task_name', strtolower($this->task_search), true);
+		$criteria->compare('updatedby.displayname', strtolower($this->updated_search), true);
 
-		if(!isset($_GET['KanbanTaskHistory_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTaskHistory_sort'))
 			$criteria->order = 'id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -220,7 +220,7 @@ class KanbanTaskHistory extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,

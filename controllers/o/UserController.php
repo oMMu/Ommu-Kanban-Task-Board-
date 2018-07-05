@@ -20,7 +20,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  *----------------------------------------------------------------------------------------------------------
@@ -112,7 +112,7 @@ class UserController extends Controller
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionSuggest($limit=10) {
-		if(isset($_GET['term'])) {
+		if(Yii::app()->getRequest()->getParam('term')) {
 			$criteria = new CDbCriteria;		
 			// Custom Search
 			$criteria->with = array(
@@ -126,7 +126,7 @@ class UserController extends Controller
 			$criteria->limit = $limit;
 			$criteria->order = 'user_id ASC';
 			$criteria->params = array(
-				':displayname' => '%' . strtolower($_GET['term']) . '%',
+				':displayname' => '%' . strtolower(Yii::app()->getRequest()->getParam('term')) . '%',
 				':option' => 1,
 			);
 			$model = Users::model()->findAll($criteria);
@@ -165,7 +165,7 @@ class UserController extends Controller
 		$this->pageTitle = 'Kanban Users Manage';
 		$this->pageDescription = '';
 		$this->pageMeta = '';
-		$this->render('admin_manage',array(
+		$this->render('admin_manage', array(
 			'model'=>$model,
 			'columns' => $columns,
 		));
@@ -190,7 +190,7 @@ class UserController extends Controller
 				echo $jsonError;
 
 			} else {
-				if(isset($_GET['enablesave']) && $_GET['enablesave'] == 1) {
+				if(Yii::app()->getRequest()->getParam('enablesave') == 1) {
 					if($model->save()) {
 						echo CJSON::encode(array(
 							'type' => 5,
@@ -213,7 +213,7 @@ class UserController extends Controller
 			$this->pageTitle = 'Create Kanban Users';
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('admin_add',array(
+			$this->render('admin_add', array(
 				'model'=>$model,
 			));
 		}
@@ -239,7 +239,7 @@ class UserController extends Controller
 				echo $jsonError;
 				
 			} else {
-				if(isset($_GET['enablesave']) && $_GET['enablesave'] == 1) {
+				if(Yii::app()->getRequest()->getParam('enablesave') == 1) {
 					if($model->save()) {
 						echo CJSON::encode(array(
 							'type' => 5,
@@ -262,7 +262,7 @@ class UserController extends Controller
 			$this->pageTitle = 'Update Kanban Users';
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('admin_edit',array(
+			$this->render('admin_edit', array(
 				'model'=>$model,
 			));
 		}
@@ -275,7 +275,7 @@ class UserController extends Controller
 	public function actionRunAction() {
 		$id       = $_POST['trash_id'];
 		$criteria = null;
-		$actions  = $_GET['action'];
+		$actions  = Yii::app()->getRequest()->getParam('action');
 
 		if(count($id) > 0) {
 			$criteria = new CDbCriteria;
@@ -299,7 +299,7 @@ class UserController extends Controller
 		}
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax'])) {
+		if(!Yii::app()->getRequest()->getParam('ajax')) {
 			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('manage'));
 		}
 	}
@@ -379,7 +379,7 @@ class UserController extends Controller
 			$this->pageTitle = $title;
 			$this->pageDescription = '';
 			$this->pageMeta = '';
-			$this->render('admin_publish',array(
+			$this->render('admin_publish', array(
 				'title'=>$title,
 				'model'=>$model,
 			));

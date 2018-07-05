@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -120,16 +120,16 @@ class KanbanTaskSubHistory extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.id',$this->id);
-		if(isset($_GET['subtask'])) {
-			$criteria->compare('t.subtask_id',$_GET['subtask']);
+		$criteria->compare('t.id', $this->id);
+		if(Yii::app()->getRequest()->getParam('subtask')) {
+			$criteria->compare('t.subtask_id', Yii::app()->getRequest()->getParam('subtask'));
 		} else {
-			$criteria->compare('t.subtask_id',$this->subtask_id);
+			$criteria->compare('t.subtask_id', $this->subtask_id);
 		}
-		$criteria->compare('t.done_status',$this->done_status);
-		if($this->action_date != null && !in_array($this->action_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.action_date)',date('Y-m-d', strtotime($this->action_date)));
-		$criteria->compare('t.action_by',$this->action_by,true);
+		$criteria->compare('t.done_status', $this->done_status);
+		if($this->action_date != null && !in_array($this->action_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.action_date)', date('Y-m-d', strtotime($this->action_date)));
+		$criteria->compare('t.action_by', $this->action_by,true);
 		
 		// Custom Search
 		$criteria->with = array(
@@ -142,10 +142,10 @@ class KanbanTaskSubHistory extends CActiveRecord
 				'select'=>'displayname'
 			),
 		);
-		$criteria->compare('subtask.subtask_name',strtolower($this->subtask_search), true);
-		$criteria->compare('user.displayname',strtolower($this->user_search), true);
+		$criteria->compare('subtask.subtask_name', strtolower($this->subtask_search), true);
+		$criteria->compare('user.displayname', strtolower($this->user_search), true);
 
-		if(!isset($_GET['KanbanTaskSubHistory_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTaskSubHistory_sort'))
 			$criteria->order = 'id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -230,7 +230,7 @@ class KanbanTaskSubHistory extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,

@@ -7,7 +7,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  */
@@ -30,7 +30,7 @@
 	<div class="clearfix">
 		<?php echo $form->labelEx($model,'task_id'); ?>
 		<div class="desc">
-			<?php echo $form->textField($model,'task_id',array('size'=>11,'maxlength'=>11)); ?>
+			<?php echo $form->textField($model,'task_id', array('size'=>11,'maxlength'=>11)); ?>
 			<?php echo $form->error($model,'task_id'); ?>
 			<?php /*<div class="small-px silent"></div>*/?>
 		</div>
@@ -42,12 +42,12 @@
 			<?php
 			!$model->isNewRecord ? ($model->pause_date != '0000-00-00' ? $model->pause_date = date('d-m-Y', strtotime($model->pause_date)) : '') : '';
 			//echo $form->textField($model,'pause_date');
-			$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
+			$this->widget('application.libraries.core.components.system.CJuiDatePicker', array(
 				'model'=>$model,
 				'attribute'=>'pause_date',
 				//'mode'=>'datetime',
 				'options'=>array(
-					'dateFormat' => 'dd-mm-yy',
+					'dateFormat' => 'yy-mm-dd',
 				),
 				'htmlOptions'=>array(
 					'class' => 'span-4',
@@ -61,7 +61,7 @@
 	<div class="clearfix">
 		<?php echo $form->labelEx($model,'pause_condition'); ?>
 		<div class="desc">
-			<?php echo $form->textArea($model,'pause_condition',array('rows'=>6, 'cols'=>50)); ?>
+			<?php echo $form->textArea($model,'pause_condition', array('rows'=>6, 'cols'=>50)); ?>
 			<?php echo $form->error($model,'pause_condition'); ?>
 			<?php /*<div class="small-px silent"></div>*/?>
 		</div>
@@ -73,12 +73,12 @@
 			<?php
 			!$model->isNewRecord ? ($model->unpause_date != '0000-00-00' ? $model->unpause_date = date('d-m-Y', strtotime($model->unpause_date)) : '') : '';
 			//echo $form->textField($model,'unpause_date');
-			$this->widget('application.libraries.core.components.system.CJuiDatePicker',array(
+			$this->widget('application.libraries.core.components.system.CJuiDatePicker', array(
 				'model'=>$model,
 				'attribute'=>'unpause_date',
 				//'mode'=>'datetime',
 				'options'=>array(
-					'dateFormat' => 'dd-mm-yy',
+					'dateFormat' => 'yy-mm-dd',
 				),
 				'htmlOptions'=>array(
 					'class' => 'span-4',
@@ -101,7 +101,7 @@
 <div class="dialog-content">
 </div>
 <div class="dialog-submit">
-	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save' ,array('onclick' => 'setEnableSave()')); ?>
+	<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save' , array('onclick' => 'setEnableSave()')); ?>
 	<?php echo CHtml::button('Close', array('id'=>'closed')); ?>
 </div>
 */?>

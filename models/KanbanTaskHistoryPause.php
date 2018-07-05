@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -110,19 +110,19 @@ class KanbanTaskHistoryPause extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.pause_id',$this->pause_id,true);
-		if(isset($_GET['task'])) {
-			$criteria->compare('t.task_id',$_GET['task']);
+		$criteria->compare('t.pause_id', $this->pause_id,true);
+		if(Yii::app()->getRequest()->getParam('task')) {
+			$criteria->compare('t.task_id', Yii::app()->getRequest()->getParam('task'));
 		} else {
-			$criteria->compare('t.task_id',$this->task_id);
+			$criteria->compare('t.task_id', $this->task_id);
 		}
-		if($this->pause_date != null && !in_array($this->pause_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.pause_date)',date('Y-m-d', strtotime($this->pause_date)));
-		$criteria->compare('t.pause_condition',$this->pause_condition,true);
-		if($this->unpause_date != null && !in_array($this->unpause_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.unpause_date)',date('Y-m-d', strtotime($this->unpause_date)));
+		if($this->pause_date != null && !in_array($this->pause_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.pause_date)', date('Y-m-d', strtotime($this->pause_date)));
+		$criteria->compare('t.pause_condition', $this->pause_condition,true);
+		if($this->unpause_date != null && !in_array($this->unpause_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.unpause_date)', date('Y-m-d', strtotime($this->unpause_date)));
 
-		if(!isset($_GET['KanbanTaskHistoryPause_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTaskHistoryPause_sort'))
 			$criteria->order = 'pause_id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -196,7 +196,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -223,7 +223,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -242,7 +242,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 	public static function getInfo($id, $column=null)
 	{
 		if($column != null) {
-			$model = self::model()->findByPk($id,array(
+			$model = self::model()->findByPk($id, array(
 				'select' => $column,
 			));
  			if(count(explode(',', $column)) == 1)

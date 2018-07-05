@@ -14,7 +14,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  *----------------------------------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ class SettingController extends Controller
 		$this->pageTitle = 'Kanban Task Categories Manage';
 		$this->pageDescription = '';
 		$this->pageMeta = '';
-		$this->render('admin_index',array(
+		$this->render('admin_index', array(
 			'model'=>$model,
 			'columns' => $columns,
 		));

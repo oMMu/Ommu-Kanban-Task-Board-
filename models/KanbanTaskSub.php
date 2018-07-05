@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -129,28 +129,28 @@ class KanbanTaskSub extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.subtask_id',$this->subtask_id);
-		$criteria->compare('t.done_status',$this->done_status);
-		if(isset($_GET['task'])) {
-			$criteria->compare('t.task_id',$_GET['task']);
+		$criteria->compare('t.subtask_id', $this->subtask_id);
+		$criteria->compare('t.done_status', $this->done_status);
+		if(Yii::app()->getRequest()->getParam('task')) {
+			$criteria->compare('t.task_id', Yii::app()->getRequest()->getParam('task'));
 		} else {
-			$criteria->compare('t.task_id',$this->task_id);
+			$criteria->compare('t.task_id', $this->task_id);
 		}
-		if(isset($_GET['user'])) {
-			$criteria->compare('t.user_id',$_GET['user']);
+		if(Yii::app()->getRequest()->getParam('user')) {
+			$criteria->compare('t.user_id', Yii::app()->getRequest()->getParam('user'));
 		} else {
-			$criteria->compare('t.user_id',$this->user_id);
+			$criteria->compare('t.user_id', $this->user_id);
 		}
-		$criteria->compare('t.subtask_name',$this->subtask_name,true);
-		if($this->action_date != null && !in_array($this->action_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.action_date)',date('Y-m-d', strtotime($this->action_date)));
-		if(isset($_GET['actionby'])) {
-			$criteria->compare('t.action_by',$_GET['actionby']);
+		$criteria->compare('t.subtask_name', $this->subtask_name,true);
+		if($this->action_date != null && !in_array($this->action_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.action_date)', date('Y-m-d', strtotime($this->action_date)));
+		if(Yii::app()->getRequest()->getParam('actionby')) {
+			$criteria->compare('t.action_by', Yii::app()->getRequest()->getParam('actionby'));
 		} else {
-			$criteria->compare('t.action_by',$this->action_by);
+			$criteria->compare('t.action_by', $this->action_by);
 		}
-		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.creation_date)',date('Y-m-d', strtotime($this->creation_date)));
+		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.creation_date)', date('Y-m-d', strtotime($this->creation_date)));
 		
 		// Custom Search
 		$criteria->with = array(
@@ -167,11 +167,11 @@ class KanbanTaskSub extends CActiveRecord
 				'select'=>'displayname'
 			),
 		);
-		$criteria->compare('task.task_name',strtolower($this->task_search), true);
-		$criteria->compare('user.displayname',strtolower($this->user_search), true);
-		$criteria->compare('actionby.displayname',strtolower($this->action_search), true);
+		$criteria->compare('task.task_name', strtolower($this->task_search), true);
+		$criteria->compare('user.displayname', strtolower($this->user_search), true);
+		$criteria->compare('actionby.displayname', strtolower($this->action_search), true);
 
-		if(!isset($_GET['KanbanTaskSub_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTaskSub_sort'))
 			$criteria->order = 'subtask_id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -256,7 +256,7 @@ class KanbanTaskSub extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -286,7 +286,7 @@ class KanbanTaskSub extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -295,10 +295,10 @@ class KanbanTaskSub extends CActiveRecord
 					),
 				), true),
 			);
-			if(!isset($_GET['type'])) {
+			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'done_status',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("status",array("id"=>$data->subtask_id)), $data->done_status, 5)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("status", array("id"=>$data->subtask_id)), $data->done_status, 5)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

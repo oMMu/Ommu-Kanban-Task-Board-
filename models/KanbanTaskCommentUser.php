@@ -4,7 +4,7 @@
  *
  * @author Putra Sudaryanto <putra@sudaryanto.id>
  * @contact (+62)856-299-4114
- * @copyright Copyright (c) 2013 Ommu Platform (opensource.ommu.co)
+ * @copyright Copyright (c) 2013 Ommu Platform (www.ommu.co)
  * @link https://github.com/ommu/ommu-kanban-task
  *
  * This is the template for generating the model class of a specified table.
@@ -122,24 +122,24 @@ class KanbanTaskCommentUser extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('t.id',$this->id);
-		if(isset($_GET['task'])) {
-			$criteria->compare('t.task_id',$_GET['task']);
+		$criteria->compare('t.id', $this->id);
+		if(Yii::app()->getRequest()->getParam('task')) {
+			$criteria->compare('t.task_id', Yii::app()->getRequest()->getParam('task'));
 		} else {
-			$criteria->compare('t.task_id',$this->task_id);
+			$criteria->compare('t.task_id', $this->task_id);
 		}
-		if(isset($_GET['user'])) {
-			$criteria->compare('t.user_id',$_GET['user']);
+		if(Yii::app()->getRequest()->getParam('user')) {
+			$criteria->compare('t.user_id', Yii::app()->getRequest()->getParam('user'));
 		} else {
-			$criteria->compare('t.user_id',$this->user_id);
+			$criteria->compare('t.user_id', $this->user_id);
 		}
-		$criteria->compare('t.read_status',$this->read_status);
-		if($this->read_date != null && !in_array($this->read_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.read_date)',date('Y-m-d', strtotime($this->read_date)));
-		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00', '0000-00-00')))
-			$criteria->compare('date(t.creation_date)',date('Y-m-d', strtotime($this->creation_date)));
+		$criteria->compare('t.read_status', $this->read_status);
+		if($this->read_date != null && !in_array($this->read_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.read_date)', date('Y-m-d', strtotime($this->read_date)));
+		if($this->creation_date != null && !in_array($this->creation_date, array('0000-00-00 00:00:00','1970-01-01 00:00:00','0002-12-02 07:07:12','-0001-11-30 00:00:00')))
+			$criteria->compare('date(t.creation_date)', date('Y-m-d', strtotime($this->creation_date)));
 
-		if(!isset($_GET['KanbanTaskCommentUser_sort']))
+		if(!Yii::app()->getRequest()->getParam('KanbanTaskCommentUser_sort'))
 			$criteria->order = 'id DESC';
 
 		return new CActiveDataProvider($this, array(
@@ -214,7 +214,7 @@ class KanbanTaskCommentUser extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
@@ -240,7 +240,7 @@ class KanbanTaskCommentUser extends CActiveRecord
 					),
 					'options'=>array(
 						'showOn' => 'focus',
-						'dateFormat' => 'dd-mm-yy',
+						'dateFormat' => 'yy-mm-dd',
 						'showOtherMonths' => true,
 						'selectOtherMonths' => true,
 						'changeMonth' => true,
