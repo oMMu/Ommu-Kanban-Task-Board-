@@ -97,10 +97,10 @@ class HistorypauseController extends Controller
 	 */
 	public function actionIndex() 
 	{
-		$arrThemes = Utility::getCurrentTemplate('public');
+		$arrThemes = $this->currentTemplate('public');
 		Yii::app()->theme = $arrThemes['folder'];
 		$this->layout = $arrThemes['layout'];
-		Utility::applyCurrentTheme($this->module);
+		$this->applyCurrentTheme($this->module);
 		
 		$setting = KanbanTaskHistoryPause::model()->findByPk(1, array(
 			'select' => 'meta_description, meta_keyword',
@@ -133,10 +133,10 @@ class HistorypauseController extends Controller
 	 */
 	public function actionView($id) 
 	{
-		$arrThemes = Utility::getCurrentTemplate('public');
+		$arrThemes = $this->currentTemplate('public');
 		Yii::app()->theme = $arrThemes['folder'];
 		$this->layout = $arrThemes['layout'];
-		Utility::applyCurrentTheme($this->module);
+		$this->applyCurrentTheme($this->module);
 		
 		$setting = VideoSetting::model()->findByPk(1, array(
 			'select' => 'meta_keyword',
