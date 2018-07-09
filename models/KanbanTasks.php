@@ -434,25 +434,7 @@ class KanbanTasks extends CActiveRecord
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
-				'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-					'model'=>$this, 
-					'attribute'=>'updated_date', 
-					'language' => 'en',
-					'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-					//'mode'=>'datetime',
-					'htmlOptions' => array(
-						'id' => 'updated_date_filter',
-					),
-					'options'=>array(
-						'showOn' => 'focus',
-						'dateFormat' => 'yy-mm-dd',
-						'showOtherMonths' => true,
-						'selectOtherMonths' => true,
-						'changeMonth' => true,
-						'changeYear' => true,
-						'showButtonPanel' => true,
-					),
-				), true),
+				'filter' => $this->filterDatepicker($this, 'updated_date'),
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'updated_search',
@@ -479,25 +461,7 @@ class KanbanTasks extends CActiveRecord
                 'htmlOptions' => array(
                     'class' => 'center',
                 ),
-                'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-                    'model'=>$this,
-                    'attribute'=>'pause_date',
-                    'language' => 'en',
-                    'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-                    //'mode'=>'datetime',
-                    'htmlOptions' => array(
-                        'id' => 'pause_date_filter',
-                    ),
-                    'options'=>array(
-                        'showOn' => 'focus',
-                        'dateFormat' => 'yy-mm-dd',
-                        'showOtherMonths' => true,
-                        'selectOtherMonths' => true,
-                        'changeMonth' => true,
-                        'changeYear' => true,
-                        'showButtonPanel' => true,
-                    ),
-                ), true),
+				'filter' => $this->filterDatepicker($this, 'pause_date'),
             );
             $this->defaultColumns[] = 'pause_condition';
             $this->defaultColumns[] = array(
@@ -506,26 +470,8 @@ class KanbanTasks extends CActiveRecord
                 'htmlOptions' => array(
                     'class' => 'center',
                 ),
-                'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-                    'model'=>$this,
-                    'attribute'=>'unpause_date',
-                    'language' => 'en',
-                    'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-                    //'mode'=>'datetime',
-                    'htmlOptions' => array(
-                        'id' => 'unpause_date_filter',
-                    ),
-                    'options'=>array(
-                        'showOn' => 'focus',
-                        'dateFormat' => 'yy-mm-dd',
-                        'showOtherMonths' => true,
-                        'selectOtherMonths' => true,
-                        'changeMonth' => true,
-                        'changeYear' => true,
-                        'showButtonPanel' => true,
-                    ),
-                ), true),
-            );			
+				'filter' => $this->filterDatepicker($this, 'unpause_date'),
+            );
 			
 			$this->defaultColumns[] = array(
 				'name' => 'creation_date',
@@ -533,25 +479,7 @@ class KanbanTasks extends CActiveRecord
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
-				'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-					'model'=>$this, 
-					'attribute'=>'creation_date', 
-					'language' => 'en',
-					'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-					//'mode'=>'datetime',
-					'htmlOptions' => array(
-						'id' => 'creation_date_filter',
-					),
-					'options'=>array(
-						'showOn' => 'focus',
-						'dateFormat' => 'yy-mm-dd',
-						'showOtherMonths' => true,
-						'selectOtherMonths' => true,
-						'changeMonth' => true,
-						'changeYear' => true,
-						'showButtonPanel' => true,
-					),
-				), true),
+				'filter' => $this->filterDatepicker($this, 'creation_date'),
 			);
 			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(

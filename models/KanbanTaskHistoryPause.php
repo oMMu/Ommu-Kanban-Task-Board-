@@ -29,6 +29,8 @@
  */
 class KanbanTaskHistoryPause extends CActiveRecord
 {
+	use GridViewTrait;
+
 	public $defaultColumns = array();
 
 	/**
@@ -185,25 +187,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
-				'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-					'model'=>$this,
-					'attribute'=>'pause_date',
-					'language' => 'en',
-					'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-					//'mode'=>'datetime',
-					'htmlOptions' => array(
-						'id' => 'pause_date_filter',
-					),
-					'options'=>array(
-						'showOn' => 'focus',
-						'dateFormat' => 'yy-mm-dd',
-						'showOtherMonths' => true,
-						'selectOtherMonths' => true,
-						'changeMonth' => true,
-						'changeYear' => true,
-						'showButtonPanel' => true,
-					),
-				), true),
+				'filter' => $this->filterDatepicker($this, 'pause_date'),
 			);
 			$this->defaultColumns[] = 'pause_condition';
 			$this->defaultColumns[] = array(
@@ -212,25 +196,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
-				'filter' => Yii::app()->controller->widget('application.libraries.core.components.system.CJuiDatePicker', array(
-					'model'=>$this,
-					'attribute'=>'unpause_date',
-					'language' => 'en',
-					'i18nScriptFile' => 'jquery-ui-i18n.min.js',
-					//'mode'=>'datetime',
-					'htmlOptions' => array(
-						'id' => 'unpause_date_filter',
-					),
-					'options'=>array(
-						'showOn' => 'focus',
-						'dateFormat' => 'yy-mm-dd',
-						'showOtherMonths' => true,
-						'selectOtherMonths' => true,
-						'changeMonth' => true,
-						'changeYear' => true,
-						'showButtonPanel' => true,
-					),
-				), true),
+				'filter' => $this->filterDatepicker($this, 'unpause_date'),
 			);
 		}
 		parent::afterConstruct();
