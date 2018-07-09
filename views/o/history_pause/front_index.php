@@ -17,7 +17,7 @@
 	);
 ?>
 
-<?php $this->widget('application.libraries.core.components.system.FListView', array(
+<?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'/o/history_pause/_view',
 	'pager' => array(
