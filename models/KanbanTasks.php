@@ -430,7 +430,7 @@ class KanbanTasks extends CActiveRecord
 			$this->defaultColumns[] = 'task_status';
 			$this->defaultColumns[] = array(
 				'name' => 'updated_date',
-				'value' => 'Utility::dateFormat($data->updated_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->updated_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
@@ -457,7 +457,7 @@ class KanbanTasks extends CActiveRecord
             }
             $this->defaultColumns[] = array(
                 'name' => 'pause_date',
-                'value' => 'Utility::dateFormat($data->pause_date)',
+                'value' => 'Yii::app()->dateFormatter->formatDateTime($data->pause_date, \'medium\', false)',
                 'htmlOptions' => array(
                     'class' => 'center',
                 ),
@@ -466,7 +466,7 @@ class KanbanTasks extends CActiveRecord
             $this->defaultColumns[] = 'pause_condition';
             $this->defaultColumns[] = array(
                 'name' => 'unpause_date',
-                'value' => 'Utility::dateFormat($data->unpause_date)',
+                'value' => 'Yii::app()->dateFormatter->formatDateTime($data->unpause_date, \'medium\', false)',
                 'htmlOptions' => array(
                     'class' => 'center',
                 ),
@@ -475,7 +475,7 @@ class KanbanTasks extends CActiveRecord
 			
 			$this->defaultColumns[] = array(
 				'name' => 'creation_date',
-				'value' => 'Utility::dateFormat($data->creation_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->creation_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),

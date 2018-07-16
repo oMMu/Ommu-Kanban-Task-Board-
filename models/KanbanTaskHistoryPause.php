@@ -183,7 +183,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 			$this->defaultColumns[] = 'task_id';
 			$this->defaultColumns[] = array(
 				'name' => 'pause_date',
-				'value' => 'Utility::dateFormat($data->pause_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->pause_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
@@ -192,7 +192,7 @@ class KanbanTaskHistoryPause extends CActiveRecord
 			$this->defaultColumns[] = 'pause_condition';
 			$this->defaultColumns[] = array(
 				'name' => 'unpause_date',
-				'value' => 'Utility::dateFormat($data->unpause_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->unpause_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),

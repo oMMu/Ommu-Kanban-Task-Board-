@@ -188,7 +188,7 @@ class KanbanTaskCommentUserHistory extends CActiveRecord
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'read_date',
-				'value' => 'Utility::dateFormat($data->read_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->read_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),

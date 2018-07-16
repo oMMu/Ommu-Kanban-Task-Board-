@@ -214,7 +214,7 @@ class KanbanTaskSubHistory extends CActiveRecord
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'action_date',
-				'value' => 'Utility::dateFormat($data->action_date)',
+				'value' => 'Yii::app()->dateFormatter->formatDateTime($data->action_date, \'medium\', false)',
 				'htmlOptions' => array(
 					'class' => 'center',
 				),
