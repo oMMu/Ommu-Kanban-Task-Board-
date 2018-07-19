@@ -163,7 +163,7 @@ class HistorypauseController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanTaskHistoryPause('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanTaskHistoryPause'])) {
 			$model->attributes=$_GET['KanbanTaskHistoryPause'];
 		}

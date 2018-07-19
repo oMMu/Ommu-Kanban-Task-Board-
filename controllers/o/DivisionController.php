@@ -111,7 +111,7 @@ class DivisionController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanUserDivision('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanUserDivision'])) {
 			$model->attributes=$_GET['KanbanUserDivision'];
 		}

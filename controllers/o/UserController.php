@@ -147,7 +147,7 @@ class UserController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanUsers('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanUsers'])) {
 			$model->attributes=$_GET['KanbanUsers'];
 		}

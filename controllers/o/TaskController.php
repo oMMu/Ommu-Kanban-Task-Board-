@@ -137,7 +137,7 @@ class TaskController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanTasks('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanTasks'])) {
 			$model->attributes=$_GET['KanbanTasks'];
 		}

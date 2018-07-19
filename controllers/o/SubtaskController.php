@@ -137,7 +137,7 @@ class SubtaskController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanTaskSub('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanTaskSub'])) {
 			$model->attributes=$_GET['KanbanTaskSub'];
 		}

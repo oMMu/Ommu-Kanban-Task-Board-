@@ -137,7 +137,7 @@ class CommentController extends Controller
 	public function actionManage() 
 	{
 		$model=new KanbanTaskComment('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanTaskComment'])) {
 			$model->attributes=$_GET['KanbanTaskComment'];
 		}

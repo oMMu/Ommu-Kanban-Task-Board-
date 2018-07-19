@@ -97,7 +97,7 @@ class SettingController extends Controller
 	public function actionIndex() 
 	{
 		$model=new KanbanTaskCategory('search');
-		$model->unsetAttributes();  // clear any default values
+		$model->unsetAttributes();	// clear any default values
 		if(isset($_GET['KanbanTaskCategory'])) {
 			$model->attributes=$_GET['KanbanTaskCategory'];
 		}
