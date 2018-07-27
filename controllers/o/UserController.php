@@ -117,8 +117,8 @@ class UserController extends Controller
 			// Custom Search
 			$criteria->with = array(
 				'option' => array(
-					'alias'=>'option',
-					'select'=>'ommu_status',
+					'alias' => 'option',
+					'select' => 'ommu_status',
 				),
 			);
 			$criteria->condition = 'displayname LIKE :displayname AND option.ommu_status = :option';

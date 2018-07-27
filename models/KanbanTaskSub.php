@@ -157,16 +157,16 @@ class KanbanTaskSub extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'task' => array(
-				'alias'=>'task',
-				'select'=>'task_name'
+				'alias' => 'task',
+				'select' => 'task_name'
 			),
 			'user' => array(
-				'alias'=>'user',
-				'select'=>'displayname'
+				'alias' => 'user',
+				'select' => 'displayname'
 			),
 			'actionby' => array(
-				'alias'=>'actionby',
-				'select'=>'displayname'
+				'alias' => 'actionby',
+				'select' => 'displayname'
 			),
 		);
 		$criteria->compare('task.task_name', strtolower($this->task_search), true);

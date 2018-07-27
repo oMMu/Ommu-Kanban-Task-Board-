@@ -279,32 +279,32 @@ class KanbanTasks extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'project' => array(
-				'alias'=>'project',
-				'select'=>'title'
+				'alias' => 'project',
+				'select' => 'title'
 			),
 			'user' => array(
-				'alias'=>'user',
-				'select'=>'displayname'
+				'alias' => 'user',
+				'select' => 'displayname'
 			),
 			'progressby' => array(
-				'alias'=>'progressby',
-				'select'=>'displayname'
+				'alias' => 'progressby',
+				'select' => 'displayname'
 			),
 			'doneby' => array(
-				'alias'=>'doneby',
-				'select'=>'displayname'
+				'alias' => 'doneby',
+				'select' => 'displayname'
 			),
 			'testedby' => array(
-				'alias'=>'testedby',
-				'select'=>'displayname'
+				'alias' => 'testedby',
+				'select' => 'displayname'
 			),
 			'creationby' => array(
-				'alias'=>'creationby',
-				'select'=>'displayname'
+				'alias' => 'creationby',
+				'select' => 'displayname'
 			),
 			'updatedby' => array(
-				'alias'=>'updatedby',
-				'select'=>'displayname'
+				'alias' => 'updatedby',
+				'select' => 'displayname'
 			),
 		);
 		$criteria->compare('project.title', strtolower($this->project_search), true);		
@@ -448,7 +448,7 @@ class KanbanTasks extends CActiveRecord
                     'htmlOptions' => array(
                         'class' => 'center',
                     ),
-                    'filter'=>array(
+                    'filter' =>array(
                         1=>'Yes',
                         0=>'No',
                     ),

@@ -136,12 +136,12 @@ class KanbanTaskSubHistory extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'subtask' => array(
-				'alias'=>'subtask',
-				'select'=>'subtask_name'
+				'alias' => 'subtask',
+				'select' => 'subtask_name'
 			),
 			'user' => array(
-				'alias'=>'user',
-				'select'=>'displayname'
+				'alias' => 'user',
+				'select' => 'displayname'
 			),
 		);
 		$criteria->compare('subtask.subtask_name', strtolower($this->subtask_search), true);

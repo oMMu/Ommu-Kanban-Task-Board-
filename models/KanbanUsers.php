@@ -144,8 +144,8 @@ class KanbanUsers extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'user' => array(
-				'alias'=>'user',
-				'select'=>'displayname'
+				'alias' => 'user',
+				'select' => 'displayname'
 			),
 		);
 		$criteria->compare('user.displayname', strtolower($this->user_input), true);
@@ -210,7 +210,7 @@ class KanbanUsers extends CActiveRecord
 			$this->defaultColumns[] = array(
 				'name' => 'division_id',
 				'value' => 'Phrase::trans($data->division->name, 2)',
-				'filter'=> KanbanUserDivision::getDivision(),
+				'filter' => KanbanUserDivision::getDivision(),
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'user_input',

@@ -155,12 +155,12 @@ class KanbanUserDivision extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'title' => array(
-				'alias'=>'title',
-				'select'=>'en'
+				'alias' => 'title',
+				'select' => 'en'
 			),
 			'description' => array(
-				'alias'=>'description',
-				'select'=>'en'
+				'alias' => 'description',
+				'select' => 'en'
 			),
 		);
 		$criteria->compare('title.en', strtolower($this->title), true);

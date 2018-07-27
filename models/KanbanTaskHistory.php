@@ -139,12 +139,12 @@ class KanbanTaskHistory extends CActiveRecord
 		// Custom Search
 		$criteria->with = array(
 			'task' => array(
-				'alias'=>'task',
-				'select'=>'task_name'
+				'alias' => 'task',
+				'select' => 'task_name'
 			),
 			'updatedby' => array(
-				'alias'=>'updatedby',
-				'select'=>'displayname'
+				'alias' => 'updatedby',
+				'select' => 'displayname'
 			),
 		);
 		$criteria->compare('task.task_name', strtolower($this->task_search), true);

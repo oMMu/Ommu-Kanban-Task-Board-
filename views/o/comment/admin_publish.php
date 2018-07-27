@@ -18,7 +18,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<?php $form=$this->beginWidget('application.libraries.yii-traits.system.OActiveForm', array(
+<?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'kanban-task-comment-form',
 	'enableAjaxValidation'=>true,
 	//'htmlOptions' => array('enctype' => 'multipart/form-data')
