@@ -66,7 +66,7 @@
 			$columnData   = $columns;
 			array_push($columnData, array(
 				'header' => 'Option',
-				'class'=>'CButtonColumn',
+				'class' => 'CButtonColumn',
 				'buttons' => array(
 					'view' => array(
 						'label' => 'view',
