@@ -14,7 +14,7 @@
 
 	$this->breadcrumbs=array(
 		'Kanban Tasks'=>array('manage'),
-		'Create',
+		Yii::t('phrase', 'Create'),
 	);
 ?>
 

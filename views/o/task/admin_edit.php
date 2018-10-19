@@ -15,7 +15,7 @@
 	$this->breadcrumbs=array(
 		'Kanban Tasks'=>array('manage'),
 		$model->task_id=>array('view','id'=>$model->task_id),
-		'Update',
+		Yii::t('phrase', 'Update'),
 	);
 ?>
 

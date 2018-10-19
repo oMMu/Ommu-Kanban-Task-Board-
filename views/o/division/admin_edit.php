@@ -15,7 +15,7 @@
 	$this->breadcrumbs=array(
 		'Kanban User Divisions'=>array('manage'),
 		$model->name=>array('view','id'=>$model->division_id),
-		'Update',
+		Yii::t('phrase', 'Update'),
 	);
 ?>
 

@@ -264,7 +264,7 @@ class KanbanTaskSub extends CActiveRecord
 			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'done_status',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("status", array("id"=>$data->subtask_id)), $data->done_status, 5)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl(\'status\', array(\'id\'=>$data->subtask_id)), $data->done_status, 5)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

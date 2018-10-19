@@ -15,7 +15,7 @@
 	$this->breadcrumbs=array(
 		'Kanban Task History Pauses'=>array('manage'),
 		$model->pause_id=>array('view','id'=>$model->pause_id),
-		'Update',
+		Yii::t('phrase', 'Update'),
 	);
 ?>
 

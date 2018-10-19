@@ -15,7 +15,7 @@
 	$this->breadcrumbs=array(
 		'Kanban Task Subs'=>array('manage'),
 		$model->subtask_id=>array('view','id'=>$model->subtask_id),
-		'Update',
+		Yii::t('phrase', 'Update'),
 	);
 ?>
 

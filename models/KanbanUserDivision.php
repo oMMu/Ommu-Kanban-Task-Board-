@@ -236,7 +236,7 @@ class KanbanUserDivision extends CActiveRecord
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'parent',
-				'value' => '$data->parent != 0 ? Phrase::trans(KanbanUserDivision::model()->findByPk($data->parent)->name, 2) : "-"',
+				'value' => '$data->parent != 0 ? Phrase::trans(KanbanUserDivision::model()->findByPk($data->parent)->name, 2) : \'-\'',
 			);
 			$this->defaultColumns[] = array(
 				'name' => 'management',
@@ -276,7 +276,7 @@ class KanbanUserDivision extends CActiveRecord
 			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'publish',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish", array("id"=>$data->division_id)), $data->publish, 1)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl(\'publish\', array(\'id\'=>$data->division_id)), $data->publish, 1)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

@@ -101,7 +101,7 @@ class KanbanTasks extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('cat_id, number, current_action, task_name, task_desc, priority, due_date, overtime, task_status', 'required'),
-			//array('project_id, user_id', 'required'),			
+			//array('project_id, user_id', 'required'),
 			array('publish, cat_id, division_id, number, priority, overtime, pause, task_status, tested_status, tested_verified, subtask, subtask_done, comment', 'numerical', 'integerOnly'=>true),
 			array('project_id, user_id, progress_by, done_by, tested_by, creation_by, updated_by', 'length', 'max'=>11),
 			array('current_action, task_name', 'length', 'max'=>64),
@@ -484,7 +484,7 @@ class KanbanTasks extends CActiveRecord
 			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'publish',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish", array("id"=>$data->task_id)), $data->publish, 1)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl(\'publish\', array(\'id\'=>$data->task_id)), $data->publish, 1)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),

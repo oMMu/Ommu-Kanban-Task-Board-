@@ -235,7 +235,7 @@ class KanbanUsers extends CActiveRecord
 			if(!Yii::app()->getRequest()->getParam('type')) {
 				$this->defaultColumns[] = array(
 					'name' => 'status',
-					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl("publish", array("id"=>$data->id)), $data->status, 2)',
+					'value' => 'Utility::getPublish(Yii::app()->controller->createUrl(\'publish\', array(\'id\'=>$data->id)), $data->status, 2)',
 					'htmlOptions' => array(
 						'class' => 'center',
 					),
